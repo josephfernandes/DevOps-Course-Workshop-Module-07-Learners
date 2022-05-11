@@ -17,11 +17,11 @@ jobs:
       run: dotnet build
     
     - name: Building Application - Part 2
-      working-directory: ./ DotnetTemplate.Web
+      working-directory: DotnetTemplate.Web
       run: npm install
 
     - name: Building Application - Part 3
-      working-directory: ./ DotnetTemplate.Web
+      working-directory: DotnetTemplate.Web
       run: npm run build
 
     - name: Testing  Application - Part 4
@@ -29,14 +29,14 @@ jobs:
       run: dotnet test 
    
     - name: Testing Application - Part 5
-      working-directory: ./ DotnetTemplate.Web
+      working-directory: DotnetTemplate.Web
       run: npm t
 
     - name: Testing Application - Part 6
-      working-directory: ./ DotnetTemplate.Web
+      working-directory: DotnetTemplate.Web
       run: npm run lint
 
     - name: Running Application - Part 6
-      working-directory: ./ DotnetTemplate.Web
+      working-directory: DotnetTemplate.Web
       run: dotnet run 
 
