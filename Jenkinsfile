@@ -1,21 +1,30 @@
 pipeline {
-    agent any
+    agent none 
 
     stages {
-        stage('Build') {
+        stage('Dotnet') {
+            agent{docker{image 'mcr.microsoft.com/dotnet/sdk:6.0'}}
             steps {
-                echo 'Building..'
+                sh 'dotnet build'
+                sh 'dotnet test'
+            }
+            environment{ 
+                DOTNET_CLI_HOME = '/tmp/dotnet_cli_home'
+    
             }
         }
-        stage('Test') {
+        stage('node') {
+            agent{docker{image 'node:17-bullseye'}}
             steps {
-                echo 'Testing..'
+                dir ('DotnetTemplate.Web'){
+                    sh 'npm install'
+                    sh 'npm run build'
+                    sh 'npm t'
+                    sh 'npm run lint'
+                }
+            
             }
         }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
-        }
+        
     }
 }
