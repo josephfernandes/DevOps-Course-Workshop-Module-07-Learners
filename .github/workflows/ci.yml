@@ -25,7 +25,7 @@ jobs:
       run: npm run build
 
     - name: Testing  Application - Part 4
-      run: cd ..
+      
       run: dotnet test 
    
     - name: Testing Application - Part 5
